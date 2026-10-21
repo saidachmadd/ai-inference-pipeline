@@ -37,15 +37,19 @@ Pastikan lingkungan Anda menggunakan **Python 3.10+**.
 
 ### 1. Instalasi Dependensi
 ```bash
-pip install fastapi uvicorn[standard] pydantic numpy scikit-learn httpx shap
+pip install -r requirements.txt
 ```
 
-*(Opsional)* Untuk mengaktifkan *Async LLM Reasoning Engine* eksternal (OpenAI-compatible), ekspor variabel *environment* berikut. Jika tidak disetel, *Circuit-Breaker Fallback* akan otomatis menggunakan *Local Deterministic XAI Synthesizer*:
+*(Opsional)* Untuk mengaktifkan *Async LLM Reasoning Engine* eksternal, Salin file contoh konfigurasi dan sesuaikan isinya:
 ```bash
-export LLM_API_KEY="sk-proj-your-api-key"
-export LLM_API_BASE_URL="[https://api.openai.com/v1/chat/completions](https://api.openai.com/v1/chat/completions)"
-export LLM_MODEL_NAME="gpt-4o-mini"
+cp .env.example .env
 ```
+Atau buat file .env di direktori root proyek Anda dengan konfigurasi berikut:
+LLM_API_KEY=sk-proj-isi-api-key-anda-disini
+LLM_API_BASE_URL=https://generativelanguage.googleapis.com/v1beta/models
+LLM_MODEL_NAME=gemini-3.5-flash
+
+Jika tidak disetel, *Circuit-Breaker Fallback* akan otomatis menggunakan *Local Deterministic XAI Synthesizer* 
 
 ### 2. Menjalankan Server ASGI (Uvicorn)
 ```bash
